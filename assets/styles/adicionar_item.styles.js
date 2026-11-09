@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: '#090909',
+    backgroundColor: '#0B0B14',
   },
   container: {
     flex: 1,
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
   formTitle: {
     fontSize: 26,
     fontWeight: '800',
-    color: '#fff2f2',
+    color: '#F5F3FF',
     marginBottom: 20,
     letterSpacing: 0.5,
   },
@@ -23,25 +23,25 @@ export const styles = StyleSheet.create({
     marginBottom: 14,
   },
   input: {
-    backgroundColor: 'rgba(31, 10, 10, 0.9)',
-    borderColor: 'rgba(255, 77, 77, 0.5)',
+    backgroundColor: 'rgba(22, 22, 38, 0.9)',
+    borderColor: 'rgba(139, 92, 246, 0.5)',
     borderWidth: 1,
     borderRadius: 14,
     paddingHorizontal: 14,
     paddingVertical: 14,
     fontSize: 14,
-    color: '#fff2f2',
+    color: '#F5F3FF',
   },
   textArea: {
     height: 110,
   },
   submitButton: {
-    backgroundColor: '#b90d0d',
+    backgroundColor: '#6D28D9',
     borderRadius: 14,
     paddingVertical: 15,
     alignItems: 'center',
     marginTop: 18,
-    shadowColor: '#b90d0d',
+    shadowColor: '#6D28D9',
     shadowOpacity: 0.35,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 6 },
@@ -58,10 +58,10 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 72,
-    backgroundColor: '#120808',
+    backgroundColor: '#121222',
     flexDirection: 'row',
     borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.08)',
+    borderTopColor: 'rgba(139, 92, 246, 0.2)',
     justifyContent: 'space-around',
     alignItems: 'center',
     paddingBottom: 8,
@@ -74,11 +74,11 @@ export const styles = StyleSheet.create({
   },
   navText: {
     fontSize: 12,
-    color: '#d8c1c1',
+    color: '#C4B5FD',
     fontWeight: '600',
   },
   activeNavText: {
-    color: '#ff4d4d',
+    color: '#8B5CF6',
     fontWeight: '800',
   },
 });

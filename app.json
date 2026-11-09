@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "yomix_app",
-    "slug": "yomix_app",
+    "name": "GameVault",
+    "slug": "gamevault_app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

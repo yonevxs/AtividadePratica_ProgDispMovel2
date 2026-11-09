@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import { addManga } from './index';
+import { addJogo } from './index';
 import { styles } from '../assets/styles/adicionar_item.styles';
 
 /**
- * Tela de Cadastro para novos mangás.
+ * Tela de Cadastro para novos jogos.
  * Utiliza o hook useState para gerenciar de forma controlada cada campo do formulário.
  */
 export default function AdicionarItemScreen() {
@@ -14,51 +14,51 @@ export default function AdicionarItemScreen() {
   // Definição dos estados locais para controle dos campos do formulário via useState
   const [nome, setNome] = useState('');
   const [genero, setGenero] = useState('');
-  const [capitulos, setCapitulos] = useState('');
+  const [plataforma, setPlataforma] = useState('');
   const [descricao, setDescricao] = useState('');
   const [personagens, setPersonagens] = useState('');
-  const [autor, setAutor] = useState('');
+  const [desenvolvedora, setDesenvolvedora] = useState('');
   const [imagem, setImagem] = useState('');
 
   // Função para tratar a submissão dos dados do formulário
   const handleCadastrar = () => {
     // Validação de preenchimento básico dos campos
-    if (!nome.trim() || !genero.trim() || !capitulos.trim()) {
-      Alert.alert('Atenção', 'Por favor, preencha os campos de Nome, Gênero e Capítulos.');
+    if (!nome.trim() || !genero.trim() || !plataforma.trim()) {
+      Alert.alert('Atenção', 'Por favor, preencha os campos de Nome, Gênero e Plataforma.');
       return;
     }
 
-    const novoManga = {
+    const novoJogo = {
       id: String(Date.now()),
       nome: nome.trim(),
       genero: genero.trim(),
-      capitulos: capitulos.trim(),
+      plataforma: plataforma.trim(),
       descricao: descricao.trim() || 'Sem descrição disponível.',
-      sinopseCompleta: descricao.trim() || 'Sinopse ainda não informada.',
-      capitulosDetalhe: `${capitulos.trim()} capítulos`,
-      autor: autor.trim() || 'Autor desconhecido',
+      sinopseCompleta: descricao.trim() || 'Descrição detalhada ainda não informada.',
+      plataformaDetalhe: plataforma.trim(),
+      desenvolvedora: desenvolvedora.trim() || 'Estúdio independente',
       personagens: personagens
         .split(',')
         .map((personagem) => personagem.trim())
         .filter(Boolean),
       imagem:
         imagem.trim() ||
-        'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600',
+        'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600',
       favorito: false,
     };
 
-    addManga(novoManga);
+    addJogo(novoJogo);
 
-    Alert.alert('Sucesso', 'Mangá cadastrado com sucesso!', [
+    Alert.alert('Sucesso', 'Jogo cadastrado com sucesso!', [
       {
         text: 'OK',
         onPress: () => {
           setNome('');
           setGenero('');
-          setCapitulos('');
+          setPlataforma('');
           setDescricao('');
           setPersonagens('');
-          setAutor('');
+          setDesenvolvedora('');
           setImagem('');
           router.push('/');
         },
@@ -69,13 +69,13 @@ export default function AdicionarItemScreen() {
   return (
     <View style={styles.mainContainer}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <Text style={styles.formTitle}>Novo mangá</Text>
+        <Text style={styles.formTitle}>Novo jogo</Text>
 
-        {/* Input: Nome do Mangá */}
+        {/* Input: Nome do Jogo */}
         <View style={styles.fieldGroup}>
           <TextInput
             style={styles.input}
-            placeholder="Nome do mangá"
+            placeholder="Nome do jogo"
             placeholderTextColor="#8E8E93"
             value={nome}
             onChangeText={setNome}
@@ -86,32 +86,32 @@ export default function AdicionarItemScreen() {
         <View style={styles.fieldGroup}>
           <TextInput
             style={styles.input}
-            placeholder="Gênero"
+            placeholder="Gênero (ex: RPG, Ação, FPS)"
             placeholderTextColor="#8E8E93"
             value={genero}
             onChangeText={setGenero}
           />
         </View>
 
-        {/* Input: Capítulos */}
+        {/* Input: Plataforma */}
         <View style={styles.fieldGroup}>
           <TextInput
             style={styles.input}
-            placeholder="Quantidade de capítulos"
+            placeholder="Plataformas (ex: PC, PS5, Xbox)"
             placeholderTextColor="#8E8E93"
-            value={capitulos}
-            onChangeText={setCapitulos}
+            value={plataforma}
+            onChangeText={setPlataforma}
           />
         </View>
 
-        {/* Input: Autor */}
+        {/* Input: Desenvolvedora */}
         <View style={styles.fieldGroup}>
           <TextInput
             style={styles.input}
-            placeholder="Autor"
+            placeholder="Desenvolvedora / Estúdio"
             placeholderTextColor="#8E8E93"
-            value={autor}
-            onChangeText={setAutor}
+            value={desenvolvedora}
+            onChangeText={setDesenvolvedora}
           />
         </View>
 
@@ -119,7 +119,7 @@ export default function AdicionarItemScreen() {
         <View style={styles.fieldGroup}>
           <TextInput
             style={styles.input}
-            placeholder="Descrição"
+            placeholder="Descrição / Sinopse do jogo"
             placeholderTextColor="#8E8E93"
             value={descricao}
             onChangeText={setDescricao}
@@ -130,7 +130,7 @@ export default function AdicionarItemScreen() {
         <View style={styles.fieldGroup}>
           <TextInput
             style={[styles.input, styles.textArea]}
-            placeholder="Personagens principais (separados por vírgula)"
+            placeholder="Personagens em destaque (separados por vírgula)"
             placeholderTextColor="#8E8E93"
             multiline
             numberOfLines={4}
@@ -140,10 +140,11 @@ export default function AdicionarItemScreen() {
           />
         </View>
 
+        {/* Input: URL da Imagem */}
         <View style={styles.fieldGroup}>
           <TextInput
             style={styles.input}
-            placeholder="URL da imagem"
+            placeholder="URL da imagem de capa"
             placeholderTextColor="#8E8E93"
             value={imagem}
             onChangeText={setImagem}
@@ -152,14 +153,14 @@ export default function AdicionarItemScreen() {
 
         {/* Botão de Cadastro */}
         <TouchableOpacity style={styles.submitButton} onPress={handleCadastrar} activeOpacity={0.8}>
-          <Text style={styles.submitButtonText}>CADASTRAR MANGÁ</Text>
+          <Text style={styles.submitButtonText}>CADASTRAR JOGO</Text>
         </TouchableOpacity>
       </ScrollView>
 
       {/* Barra de Navegação Inferior */}
       <View style={styles.bottomNav}>
         <TouchableOpacity style={styles.navButton} onPress={() => router.push('/')}>
-          <Text style={styles.navText}>Mangás</Text>
+          <Text style={styles.navText}>Jogos</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navButton} onPress={() => router.push('/item_favorito')}>
           <Text style={styles.navText}>Favoritos</Text>
